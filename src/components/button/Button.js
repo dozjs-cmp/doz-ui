@@ -4,7 +4,7 @@ import {Component, tag} from "doz";
 export default class extends Component {
     template(h) {
         return h`
-            <button>Button</button>
+            <button>Button ooo</button>
         `
     }
 }

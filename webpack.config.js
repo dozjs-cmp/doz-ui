@@ -3,6 +3,7 @@ const WebpackAutoInject = require('webpack-auto-inject-version');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const webpack = require('webpack');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+//const EsmWebpackPlugin = require("@purtuga/esm-webpack-plugin");
 const isDevServer = process.argv[1].indexOf('webpack-dev-server') !== -1;
 
 const HMRPlugin = isDevServer ? new webpack.HotModuleReplacementPlugin() : function(){};
@@ -15,16 +16,7 @@ module.exports = {
     devServer: {
         contentBase: './dist',
         hot: true
-    },/*
-    entry: './index.js',
-    output: {
-        filename: './bundle.min.js',
-        library: libraryName,
-        umdNamedDefine: true,
-        libraryTarget: 'umd',
-        globalObject: 'this',
-        pathinfo: false
-    },*/
+    },
     entry: {
         button: './src/components/button/index.js',
         tab: './src/components/tab/index.js',
@@ -46,8 +38,8 @@ module.exports = {
             commonjs: 'doz',
             commonjs2: 'doz',
             amd: 'doz',
-            root: 'Doz'/**/
-        }
+            root: 'Doz'
+        }/**/
     },
     module: {
         rules: [
@@ -89,6 +81,7 @@ module.exports = {
                 }
             }
         }),
+        //new EsmWebpackPlugin(),
         new unminifiedWebpackPlugin(),
         HMRPlugin,
         new HardSourceWebpackPlugin()
